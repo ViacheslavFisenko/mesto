@@ -1,0 +1,25 @@
+.places__container {
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 17px;
+  column-gap: 20px;
+  list-style-type: none;
+}
+
+
+@media (max-width: 1200px) {
+  .places__container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+
+@media (max-width: 600px) {
+  .places__container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+}
