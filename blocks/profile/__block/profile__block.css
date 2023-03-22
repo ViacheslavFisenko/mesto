@@ -1,0 +1,9 @@
+.profile__block {
+  padding: 22px 0 0 30px;
+}
+
+@media (max-width: 730px) {
+  .profile__block {
+    padding-left: 0;
+  }
+}

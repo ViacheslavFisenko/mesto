@@ -1,0 +1,13 @@
+.place__like {
+  display: flex;
+  align-self: center;
+  border: none;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.place__like:hover {
+  opacity: 0.4;
+}

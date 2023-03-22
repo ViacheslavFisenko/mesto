@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>место</title>
+  <link rel="stylesheet" href="./pages/index.css">
+  <script src="./index.js" defer></script>
+</head>
+
+<body class="page">
+  <header class="header">
+    <img class="header__logo" alt="место" src="./images/Vector.svg">
+    <div class="header__line"></div>
+  </header>
+  <main class="main">
+    <section class="profile">
+      <div class="profile__avatar">
+        <img class="profile__image" src="./images/image.jpg" alt="аватар">
+      </div>
+      <div class="profile__block">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <div role="button" class="profile__edit">
+            <img class="profile__edit-img" alt="место" src="./images/1.png">
+          </div>
+        </div>
+        <p class="profile__description">Исследователь океана</p>
+      </div>
+      <div role="button" class="profile__add">
+        <img class="profile__add-img" alt="место" src="./images/plus.png">
+      </div>
+    </section>
+    <div>
+    <section class="places__conteiner">
+    <ul class="places">
+      <li class="place">
+        <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+        <div class="place__description">
+          <h2 class="place__title">Карачаевск</h2>
+          <div role="button" class="place__like">
+            <img class="place__like-img" alt="лайк" src="./images/like.png">
+          </div>
+        </div>
+      </li>
+      <li class="place">
+        <img class="place__image" src="./images/elbrus.png" alt="Гора Эльбрус">
+        <div class="place__description">
+          <h2 class="place__title">Гора Эльбрус</h2>
+          <div role="button" class="place__like">
+            <img class="place__like-img" alt="лайк" src="./images/like.png">
+          </div>
+        </div>
+      </li>
+      <li class="place">
+        <img class="place__image" src="./images/dommbay.jpg" alt="Домбай">
+        <div class="place__description">
+          <h2 class="place__title">Домбай</h2>
+          <div role="button" class="place__like">
+            <img class="place__like-img" alt="лайк" src="./images/like.png">
+          </div>
+        </div>
+      </li>
+      <li class="place">
+        <img class="place__image" src="./images/elbrus.png" alt="Гора Эльбрус">
+        <div class="place__description">
+          <h2 class="place__title">Гора Эльбрус</h2>
+          <div role="button" class="place__like">
+            <img class="place__like-img" alt="лайк" src="./images/like.png">
+          </div>
+        </div>
+      </li>
+      <li class="place">
+        <img class="place__image" src="./images/dommbay.jpg" alt="Домбай">
+        <div class="place__description">
+          <h2 class="place__title">Домбай</h2>
+          <div role="button" class="place__like">
+            <img class="place__like-img" alt="лайк" src="./images/like.png">
+          </div>
+        </div>
+      </li>
+      <li class="place">
+        <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+        <div class="place__description">
+          <h2 class="place__title">Карачаево-Черкесия</h2>
+          <div role="button" class="place__like">
+            <img class="place__like-img" alt="лайк" src="./images/like.png">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">© 2020 Mesto Russia</p>
+  </footer>
+  <section class="popup">
+    <div class="popup__content">
+      <div role="button" class="popup__close"> <img class="popup__close-img" alt="close" src="./images/CloseIcon.png"></div>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__container">
+        <input class="popup__input" type="text" name="firstname" placeholder="Жак-Ив Кусто">
+        <input class="popup__input popup__input_desc" type="text" name="description" placeholder="Исследователь океана">
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+</body>
