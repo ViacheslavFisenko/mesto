@@ -14,8 +14,8 @@ const openPopup = (editPopup) => {
 
 editButtonLink.addEventListener("click", () => {
   openPopup(editPopup);
-  profileName.value = editButtonLink.textContent;
-  discription.value = dicsImput.textContent;
+  nameImput.value = profileName.textContent;
+  dicsImput.value = discription.textContent;
 });
 
 
