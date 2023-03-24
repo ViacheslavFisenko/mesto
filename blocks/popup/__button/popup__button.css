@@ -15,15 +15,15 @@
 }
 
 .popup__button:hover {
-  margin-top: 19px;
   opacity: 0.8;
-  width: 238px;
-  min-height: 46px;
 }
 
 @media (max-width: 730px) {
   .popup__button {
     width: 238px;
     min-height: 46px;
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

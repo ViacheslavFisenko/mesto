@@ -13,6 +13,13 @@
   align-self: center;
 }
 
+@media (max-width: 800px) {
+  .profile__add {
+    margin-left: 15px;
+  }
+}
+
+
 
 @media (max-width: 730px) {
   .profile__add {

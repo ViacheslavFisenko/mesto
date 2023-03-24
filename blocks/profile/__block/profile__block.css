@@ -5,5 +5,8 @@
 @media (max-width: 730px) {
   .profile__block {
     padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
