@@ -1,7 +1,9 @@
 .place__like-img {
+  background-image: url("../../../images/like.svg");
   margin: 0;
   padding: 0;
   align-self: center;
   height: 19px;
   width: 22px;
+  z-index: 0;
 }

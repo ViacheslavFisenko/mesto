@@ -76,6 +76,22 @@ const createCardElement = (cardData) => {
   cardTitle.textContent = cardData.name
   cardImage.src = cardData.link
 
+  const deleteButton = cardElement.querySelector(".place__delete")
+  const likeButton = cardElement.querySelector(".place__like")
+
+  const handleDelete = () => {
+    cardElement.remove()
+  }
+
+  const handleLike = () => {
+    likeButton.classList.toggle('place__like-img_active_black')
+    
+  }
+
+  deleteButton.addEventListener('click',handleDelete)
+
+  likeButton.addEventListener('click',handleLike)
+
   return cardElement
 }
 

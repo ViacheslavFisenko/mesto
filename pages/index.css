@@ -34,3 +34,4 @@
 @import url(../blocks/content/content.css);
 @import url(../blocks/place/__delete-img/place__delete-img.css);
 @import url(../blocks/place/__delete/place__delete.css);
+@import url(../blocks/place/__like-img/_active_black/place__like-img_active_black.css);
