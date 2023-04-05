@@ -34,60 +34,7 @@
     <div class="content">
       <section class="places">
         <ul class="places__container">
-          <li class="place">
-            <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-            <div class="place__description">
-              <h2 class="place__title">Карачаевск</h2>
-              <button type="button" class="place__like">
-                <img class="place__like-img" alt="лайк" src="./images/like.svg">
-              </button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/elbrus.png" alt="Гора Эльбрус">
-            <div class="place__description">
-              <h2 class="place__title">Гора Эльбрус</h2>
-              <button type="button" class="place__like">
-                <img class="place__like-img" alt="лайк" src="./images/like.svg">
-              </button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/dommbay.jpg" alt="Домбай">
-            <div class="place__description">
-              <h2 class="place__title">Домбай</h2>
-              <button type="button" class="place__like">
-                <img class="place__like-img" alt="лайк" src="./images/like.svg">
-              </button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/elbrus.png" alt="Гора Эльбрус">
-            <div class="place__description">
-              <h2 class="place__title">Гора Эльбрус</h2>
-              <button type="button" class="place__like">
-                <img class="place__like-img" alt="лайк" src="./images/like.svg">
-              </button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/dommbay.jpg" alt="Домбай">
-            <div class="place__description">
-              <h2 class="place__title">Домбай</h2>
-              <button type="button" class="place__like">
-                <img class="place__like-img" alt="лайк" src="./images/like.svg">
-              </button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-            <div class="place__description">
-              <h2 class="place__title">Карачаево-Черкесия</h2>
-              <button type="button" class="place__like">
-                <img class="place__like-img" alt="лайк" src="./images/like.svg">
-              </button>
-            </div>
-          </li>
+
         </ul>
       </section>
     </div>
@@ -97,15 +44,28 @@
   </footer>
   <section class="popup">
     <div class="popup__container">
-      <button type="button" class="popup__close"> <img class="popup__close-img" alt="х" src="./images/CloseIcon.svg"></button>
+      <button type="button" class="popup__close"> <img class="popup__close-img" alt="х"
+          src="./images/CloseIcon.svg"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__content" name="popupFormm">
         <input class="popup__input popup__input_add_firstname" type="text" name="firstname" placeholder="Жак-Ив Кусто">
-        <input class="popup__input popup__input_add_disc" type="text" name="description" placeholder="Исследователь океана">
+        <input class="popup__input popup__input_add_disc" type="text" name="description"
+          placeholder="Исследователь океана">
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
     </div>
   </section>
+  <template id="cards-template">
+    <li class="place">
+      <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+      <div class="place__description">
+        <h2 class="place__title">Карачаевск</h2>
+        <button type="button" class="place__like">
+          <img class="place__like-img" alt="лайк" src="./images/like.svg">
+        </button>
+      </div>
+    </li>
+  </template>
 </body>
 
 </html>
