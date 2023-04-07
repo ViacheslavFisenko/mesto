@@ -9,7 +9,7 @@
   background-color: transparent;
 }
 
-.popup__close-view {
+.popup__close-view:hover {
   opacity: 0.6;
 }
 
