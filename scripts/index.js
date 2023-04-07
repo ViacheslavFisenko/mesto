@@ -40,7 +40,7 @@ const editButtonLinkImg = document.querySelector(".profile__add");
 const editButtonCloseImg = document.querySelector(".popup-img__close");
 const editCardForm = document.querySelector(".popup-img__content-img");
 const viewPopup = document.querySelector(".popup-view")
-const editButtonCloseView = document.querySelector(".popup__close-view")
+const editButtonCloseView = document.querySelector(".popup-view__close")
 
 
 //эта переиспользуемая функция закрывает попапы
@@ -142,8 +142,8 @@ editButtonCloseImg.addEventListener("click", () => {
 
 const handleEditCardSubmit = (event) => {
   event.preventDefault()
-  const placeImput = editCardForm.querySelector(".popup__input_add_place")
-  const srcImput = editCardForm.querySelector(".popup__input_add_src")
+  const placeImput = editCardForm.querySelector(".popup-img__input_add_place")
+  const srcImput = editCardForm.querySelector(".popup-img__input_add_src")
   const name = placeImput.value
   const link = srcImput.value
   const placeData = {
