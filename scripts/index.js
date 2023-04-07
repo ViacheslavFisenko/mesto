@@ -37,8 +37,8 @@ const discription = document.querySelector(".profile__description")
 //далее идут переменные относящиеся к .popup-img
 const editPopupImg = document.querySelector(".popup-img");
 const editButtonLinkImg = document.querySelector(".profile__add");
-const editButtonCloseImg = document.querySelector(".popup__close-image");
-const editCardForm = document.querySelector(".popup__content-img");
+const editButtonCloseImg = document.querySelector(".popup-img__close");
+const editCardForm = document.querySelector(".popup-img__content-img");
 const viewPopup = document.querySelector(".popup-view")
 const editButtonCloseView = document.querySelector(".popup__close-view")
 
