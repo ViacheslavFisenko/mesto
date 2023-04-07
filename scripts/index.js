@@ -39,7 +39,8 @@ const editPopupImg = document.querySelector(".popup-img");
 const editButtonLinkImg = document.querySelector(".profile__add");
 const editButtonCloseImg = document.querySelector(".popup__close-image");
 const editCardForm = document.querySelector(".popup__content-img");
-
+const viewPopup = document.querySelector(".popup-view")
+const editButtonCloseView = document.querySelector(".popup__close-view")
 
 
 //эта переиспользуемая функция закрывает попапы
@@ -82,6 +83,9 @@ const createCardElement = (cardData) => {
   const cardElement = cardsTemplate.content.querySelector(".place").cloneNode(true)
   const cardTitle = cardElement.querySelector(".place__title")
   const cardImage = cardElement.querySelector(".place__image")
+  
+  const srcViewPopup = document.querySelector(".popup-view__image")
+  const popupViewDescription = document.querySelector(".popup-view__description")
 
   cardTitle.textContent = cardData.name
   cardImage.src = cardData.link
@@ -102,8 +106,22 @@ const createCardElement = (cardData) => {
 
   likeButton.addEventListener('click', handleLike)
 
+
+  cardImage.addEventListener('click', (event) => {
+    event.preventDefault();
+    openPopup(viewPopup);
+    srcViewPopup.src = cardData.link
+    popupViewDescription.textContent = cardData.name
+    
+  });
+   
   return cardElement
 }
+
+
+editButtonCloseView.addEventListener("click", () => {
+  closePopup(viewPopup);
+});
 
 const renderCardElement = (cardElement) => {
   placesContainer.prepend(cardElement)
@@ -138,5 +156,5 @@ const handleEditCardSubmit = (event) => {
 
 editCardForm.addEventListener("submit", handleEditCardSubmit)
 
-//ниже описан функционал просмотра картинок
+
 
