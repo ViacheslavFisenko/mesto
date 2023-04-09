@@ -1,10 +1,10 @@
-.popup__close-img {
+.popup-edit__close-img {
   width: 32px;
   height: 32px;
 }
 
 @media (max-width: 600px) {
-  .popup__close-img {
+  .popup-edit__close-img {
     width: 20px;
     height: 20px;
   }

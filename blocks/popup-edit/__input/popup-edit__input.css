@@ -1,4 +1,4 @@
-.popup__input {
+.popup-edit__input {
   margin: 0;
   margin-bottom: 25px;
   padding: 0;
@@ -14,7 +14,7 @@
 }
 
 @media (max-width: 600px) {
-  .popup__input {
+  .popup-edit__input {
     padding-bottom: 13px;
     margin-bottom: 30px;
   }

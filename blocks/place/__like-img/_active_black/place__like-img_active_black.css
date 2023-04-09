@@ -1,9 +1,0 @@
-.place__like-img_active_black {
-  background-image: url("../../../../images/Like-active.svg");
-  margin: 0;
-  padding: 0;
-  align-self: center;
-  height: 19px;
-  width: 22px;
-  z-index: 2;
-}

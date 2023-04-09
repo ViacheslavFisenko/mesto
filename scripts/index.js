@@ -1,7 +1,7 @@
 const initialCards = [
   {
     name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
   },
   {
     name: 'Челябинская область',
@@ -25,23 +25,26 @@ const initialCards = [
   }
 ];
 
-//далее идут переменные относящиеся к .popup
-const editButtonLink = document.querySelector(".profile__edit");
-const editPopup = document.querySelector(".popup");
-const editButtonClose = editPopup.querySelector(".popup__close");
-const nameImput = editPopup.querySelector(".popup__input_add_firstname");
-const dicsImput = editPopup.querySelector(".popup__input_add_disc");
-const editPopupForm = editPopup.querySelector(".popup__content")
+const editButton = document.querySelector(".profile__edit");
 const profileName = document.querySelector(".profile__name")
 const discription = document.querySelector(".profile__description")
-//далее идут переменные относящиеся к .popup-img
-const editPopupImg = document.querySelector(".popup-img");
-const editButtonLinkImg = document.querySelector(".profile__add");
-const editButtonCloseImg = document.querySelector(".popup-img__close");
-const editCardForm = document.querySelector(".popup-img__content-img");
-const viewPopup = document.querySelector(".popup-view")
-const editButtonCloseView = document.querySelector(".popup-view__close")
+const addButton = document.querySelector(".profile__add");
 
+//далее идут переменные относящиеся к .popup
+const editPopup = document.querySelector(".popup");
+const editButtonClose = editPopup.querySelector(".popup-edit__close");
+const nameImput = editPopup.querySelector(".popup__input_add_firstname");
+const dicsImput = editPopup.querySelector(".popup__input_add_disc");
+const editPopupForm = editPopup.querySelector(".popup-edit__content")
+
+//далее идут переменные относящиеся к .popup_type_show-image/добавление карточек
+const popupImg = document.querySelector(".popup_type_show-image");
+const popupImgButtonClose = document.querySelector(".popup-img__close");
+const popupImgForm = document.querySelector(".popup-img__content-img");
+
+//далее идут переменные относящиеся к .popup-view/просмотр изображений
+const viewPopup = document.querySelector(".popup_type_show-view")
+const viewPopupButtonClose = document.querySelector(".popup-view__close")
 
 //эта переиспользуемая функция закрывает попапы
 const closePopup = (editPopup) => {
@@ -54,7 +57,7 @@ const openPopup = (editPopup) => {
 }
 
 //ниже описан функционал редактирования профиля 
-editButtonLink.addEventListener("click", () => {
+editButton.addEventListener("click", () => {
   openPopup(editPopup);
   nameImput.value = profileName.textContent;
   dicsImput.value = discription.textContent;
@@ -63,7 +66,6 @@ editButtonLink.addEventListener("click", () => {
 editButtonClose.addEventListener("click", () => {
   closePopup(editPopup);
 });
-
 
 editPopupForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -83,12 +85,13 @@ const createCardElement = (cardData) => {
   const cardElement = cardsTemplate.content.querySelector(".place").cloneNode(true)
   const cardTitle = cardElement.querySelector(".place__title")
   const cardImage = cardElement.querySelector(".place__image")
-  
+
   const srcViewPopup = document.querySelector(".popup-view__image")
   const popupViewDescription = document.querySelector(".popup-view__description")
 
   cardTitle.textContent = cardData.name
   cardImage.src = cardData.link
+  cardImage.textContent = cardData.link
 
   const deleteButton = cardElement.querySelector(".place__delete")
   const likeButton = cardElement.querySelector(".place__like")
@@ -98,7 +101,7 @@ const createCardElement = (cardData) => {
   }
 
   const handleLike = () => {
-    likeButton.classList.toggle('place__like-img_active_black')
+    likeButton.classList.toggle('place__like-img_active')
 
   }
 
@@ -106,24 +109,25 @@ const createCardElement = (cardData) => {
 
   likeButton.addEventListener('click', handleLike)
 
-
   cardImage.addEventListener('click', (event) => {
     event.preventDefault();
     openPopup(viewPopup);
     srcViewPopup.src = cardData.link
     popupViewDescription.textContent = cardData.name
-    
   });
-   
+
   return cardElement
 }
 
-
-editButtonCloseView.addEventListener("click", () => {
+viewPopupButtonClose.addEventListener("click", () => {
   closePopup(viewPopup);
 });
 
 const renderCardElement = (cardElement) => {
+  placesContainer.append(cardElement)
+}
+
+const renderNewCardElement = (cardElement) => {
   placesContainer.prepend(cardElement)
 }
 
@@ -132,29 +136,26 @@ initialCards.forEach((card) => {
 })
 
 //ниже описан функционал добавления карточек
-editButtonLinkImg.addEventListener("click", () => {
-  openPopup(editPopupImg);
+addButton.addEventListener("click", () => {
+  openPopup(popupImg);
 });
 
-editButtonCloseImg.addEventListener("click", () => {
-  closePopup(editPopupImg);
+popupImgButtonClose.addEventListener("click", () => {
+  closePopup(popupImg);
 });
 
 const handleEditCardSubmit = (event) => {
   event.preventDefault()
-  const placeImput = editCardForm.querySelector(".popup-img__input_add_place")
-  const srcImput = editCardForm.querySelector(".popup-img__input_add_src")
+  const placeImput = popupImgForm.querySelector(".popup-img__input_add_place")
+  const srcImput = popupImgForm.querySelector(".popup-img__input_add_src")
   const name = placeImput.value
   const link = srcImput.value
   const placeData = {
     name,
     link,
   }
-  renderCardElement(createCardElement(placeData))
-  closePopup(editPopupImg);
+  renderNewCardElement(createCardElement(placeData))
+  closePopup(popupImg);
 }
 
-editCardForm.addEventListener("submit", handleEditCardSubmit)
-
-
-
+popupImgForm.addEventListener("submit", handleEditCardSubmit)
