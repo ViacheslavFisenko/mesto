@@ -33,8 +33,8 @@ const addButton = document.querySelector(".profile__add");
 //далее идут переменные относящиеся к .popup
 const editPopup = document.querySelector(".popup");
 const editButtonClose = editPopup.querySelector(".popup-edit__close");
-const nameImput = editPopup.querySelector(".popup-edit__input_add_firstname");
-const dicsImput = editPopup.querySelector(".popup-edit__input_add_disc");
+const nameImput = editPopup.querySelector(".popup__input_add_firstname");
+const dicsImput = editPopup.querySelector(".popup__input_add_disc");
 const editPopupForm = editPopup.querySelector(".popup-edit__content")
 
 //далее идут переменные относящиеся к .popup_type_show-image/добавление карточек
@@ -146,8 +146,8 @@ popupImgButtonClose.addEventListener("click", () => {
 
 const handleEditCardSubmit = (event) => {
   event.preventDefault()
-  const placeImput = popupImgForm.querySelector(".popup-img__input_add_place")
-  const srcImput = popupImgForm.querySelector(".popup-img__input_add_src")
+  const placeImput = popupImgForm.querySelector(".popup__input_add_place")
+  const srcImput = popupImgForm.querySelector(".popup__input_add_src")
   const name = placeImput.value
   const link = srcImput.value
   const placeData = {
