@@ -91,7 +91,7 @@ const createCardElement = (cardData) => {
 
   cardTitle.textContent = cardData.name
   cardImage.src = cardData.link
-  cardImage.textContent = cardData.link
+  cardImage.alt = cardData.name
 
   const deleteButton = cardElement.querySelector(".place__delete")
   const likeButton = cardElement.querySelector(".place__like")

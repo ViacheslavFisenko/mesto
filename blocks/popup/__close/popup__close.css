@@ -1,4 +1,4 @@
-.popup-view__close {
+.popup__close {
   position: absolute;
   cursor: pointer;
   top: -40px;
@@ -9,12 +9,12 @@
   background-color: transparent;
 }
 
-.popup-view__close:hover {
+.popup__close:hover {
   opacity: 0.6;
 }
 
 @media (max-width: 600px) {
-  .popup-view__close {
+  .popup__close {
     top: -35px;
     right: 0px;
     width: 20px;
