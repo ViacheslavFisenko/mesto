@@ -32,19 +32,19 @@ const addButton = document.querySelector(".profile__add");
 
 //далее идут переменные относящиеся к .popup
 const editPopup = document.querySelector(".popup_type_show-edit");
-const editButtonClose = editPopup.querySelector(".popup-edit__close");
+const editButtonClose = editPopup.querySelector(".popup__close_type_edit");
 const nameImput = editPopup.querySelector(".popup__input_add_firstname");
 const dicsImput = editPopup.querySelector(".popup__input_add_disc");
-const editPopupForm = editPopup.querySelector(".popup-edit__content")
+const editPopupForm = editPopup.querySelector(".popup__content_type_edit")
 
 //далее идут переменные относящиеся к .popup_type_show-image/добавление карточек
 const popupImg = document.querySelector(".popup_type_show-image");
-const popupImgButtonClose = document.querySelector(".popup-img__close");
+const popupImgButtonClose = document.querySelector(".popup__close_type_img");
 const popupImgForm = document.querySelector(".popup-img__content-img");
 
 //далее идут переменные относящиеся к .popup-view/просмотр изображений
 const viewPopup = document.querySelector(".popup_type_show-view")
-const viewPopupButtonClose = document.querySelector(".popup-view__close")
+const viewPopupButtonClose = document.querySelector(".popup__close_type_view")
 
 //эта переиспользуемая функция закрывает попапы
 const closePopup = (editPopup) => {
