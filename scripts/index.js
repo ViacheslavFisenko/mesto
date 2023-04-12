@@ -31,7 +31,7 @@ const discription = document.querySelector(".profile__description")
 const addButton = document.querySelector(".profile__add");
 
 //далее идут переменные относящиеся к .popup
-const editPopup = document.querySelector(".popup");
+const editPopup = document.querySelector(".popup_type_show-edit");
 const editButtonClose = editPopup.querySelector(".popup-edit__close");
 const nameImput = editPopup.querySelector(".popup__input_add_firstname");
 const dicsImput = editPopup.querySelector(".popup__input_add_disc");

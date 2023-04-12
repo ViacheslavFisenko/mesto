@@ -1,4 +1,4 @@
-.popup-edit {
+.popup__container {
   width: 430px;
   background-color: #fff;
   color: #000;
@@ -11,7 +11,7 @@
 
 
 @media (max-width: 600px) {
-  .popup-edit {
+  .popup__container {
     width: 282px;
     padding: 25px 22px;
   }
