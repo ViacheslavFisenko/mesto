@@ -40,7 +40,7 @@ const editPopupForm = editPopup.querySelector(".popup__content_type_edit")
 //далее идут переменные относящиеся к .popup_type_show-image/добавление карточек
 const popupImg = document.querySelector(".popup_type_show-image");
 const popupImgButtonClose = document.querySelector(".popup__close_type_img");
-const popupImgForm = document.querySelector(".popup-img__content-img");
+const popupImgForm = document.querySelector(".popup__content_type_img");
 
 //далее идут переменные относящиеся к .popup-view/просмотр изображений
 const viewPopup = document.querySelector(".popup_type_show-view")
@@ -86,8 +86,8 @@ const createCardElement = (cardData) => {
   const cardTitle = cardElement.querySelector(".place__title")
   const cardImage = cardElement.querySelector(".place__image")
 
-  const srcViewPopup = document.querySelector(".popup-view__image")
-  const popupViewDescription = document.querySelector(".popup-view__description")
+  const srcViewPopup = document.querySelector(".popup__image")
+  const popupViewDescription = document.querySelector(".popup__description")
 
   cardTitle.textContent = cardData.name
   cardImage.src = cardData.link
