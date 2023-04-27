@@ -54,6 +54,7 @@ const closePopup = (editPopup) => {
 //эта переиспользуемая функция открывает попапы
 const openPopup = (editPopup) => {
   editPopup.classList.add("popup_opened");
+  document.addEventListener('keydown', handleCloseByEsc)
 }
 
 //ниже описан функционал редактирования профиля 
@@ -159,3 +160,24 @@ const handleEditCardSubmit = (event) => {
 }
 
 popupImgForm.addEventListener("submit", handleEditCardSubmit)
+
+// функционал закрытия на ESC
+
+const handleCloseByEsc = (event) => {
+  const popups = document.querySelectorAll('.popup')
+  const targetPopups = Array.from(popups)
+  targetPopups.forEach(function (popup) {
+    popup.addEventListener('input', (event) => {
+    })
+    if (event.key === "Escape") {
+      closePopup(popup)
+    }
+
+    popup.addEventListener('click', (event) => {
+      if (event.target === event.currentTarget) {
+        closePopup(popup)
+      }
+      console.log(event.target === event.currentTarget)
+    })
+  })
+}
