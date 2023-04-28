@@ -25,14 +25,14 @@ const initialCards = [
   }
 ];
 
-const editButton = document.querySelector(".profile__edit");
+const buttonEditProfile = document.querySelector(".profile__edit");
 const profileName = document.querySelector(".profile__name")
 const discription = document.querySelector(".profile__description")
-const addButton = document.querySelector(".profile__add");
+const buttonAddProfile = document.querySelector(".profile__add");
 
 //далее идут переменные относящиеся к .popup
 const editPopup = document.querySelector(".popup_type_show-edit");
-const editButtonClose = editPopup.querySelector(".popup__close_type_edit");
+const buttonClosePopupProfile = editPopup.querySelector(".popup__close_type_edit");
 const nameImput = editPopup.querySelector(".popup__input_add_firstname");
 const dicsImput = editPopup.querySelector(".popup__input_add_disc");
 const editPopupForm = editPopup.querySelector(".popup__content_type_edit")
@@ -49,6 +49,7 @@ const viewPopupButtonClose = document.querySelector(".popup__close_type_view")
 //эта переиспользуемая функция закрывает попапы
 const closePopup = (editPopup) => {
   editPopup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', handleCloseByEsc)
 }
 
 //эта переиспользуемая функция открывает попапы
@@ -58,13 +59,13 @@ const openPopup = (editPopup) => {
 }
 
 //ниже описан функционал редактирования профиля 
-editButton.addEventListener("click", () => {
+buttonEditProfile.addEventListener("click", () => {
   openPopup(editPopup);
   nameImput.value = profileName.textContent;
   dicsImput.value = discription.textContent;
 });
 
-editButtonClose.addEventListener("click", () => {
+buttonClosePopupProfile.addEventListener("click", () => {
   closePopup(editPopup);
 });
 
@@ -137,7 +138,7 @@ initialCards.forEach((card) => {
 })
 
 //ниже описан функционал добавления карточек
-addButton.addEventListener("click", () => {
+buttonAddProfile.addEventListener("click", () => {
   openPopup(popupImg);
 });
 
@@ -145,10 +146,11 @@ popupImgButtonClose.addEventListener("click", () => {
   closePopup(popupImg);
 });
 
+const placeImput = popupImgForm.querySelector(".popup__input_add_place")
+const srcImput = popupImgForm.querySelector(".popup__input_add_src")
+
 const handleEditCardSubmit = (event) => {
   event.preventDefault()
-  const placeImput = popupImgForm.querySelector(".popup__input_add_place")
-  const srcImput = popupImgForm.querySelector(".popup__input_add_src")
   const name = placeImput.value
   const link = srcImput.value
   const placeData = {
@@ -164,20 +166,21 @@ popupImgForm.addEventListener("submit", handleEditCardSubmit)
 // функционал закрытия на ESC
 
 const handleCloseByEsc = (event) => {
+  if (event.key === "Escape") {
+    const popupOpened = document.querySelector('.popup_opened')
+    closePopup(popupOpened)
+  }
+}
+
+const handleClosebyClickonOverlay = (event) => {
   const popups = document.querySelectorAll('.popup')
   const targetPopups = Array.from(popups)
   targetPopups.forEach(function (popup) {
-    popup.addEventListener('input', (event) => {
-    })
-    if (event.key === "Escape") {
-      closePopup(popup)
-    }
-
     popup.addEventListener('click', (event) => {
       if (event.target === event.currentTarget) {
         closePopup(popup)
       }
-      console.log(event.target === event.currentTarget)
     })
   })
 }
+handleClosebyClickonOverlay()
