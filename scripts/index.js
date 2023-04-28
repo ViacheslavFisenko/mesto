@@ -115,6 +115,7 @@ const createCardElement = (cardData) => {
     event.preventDefault();
     openPopup(viewPopup);
     srcViewPopup.src = cardData.link
+    srcViewPopup.alt = cardData.name
     popupViewDescription.textContent = cardData.name
   });
 
@@ -140,6 +141,8 @@ initialCards.forEach((card) => {
 //ниже описан функционал добавления карточек
 buttonAddProfile.addEventListener("click", () => {
   openPopup(popupImg);
+  placeImput.value = ""
+  srcImput.value = ""
 });
 
 popupImgButtonClose.addEventListener("click", () => {
