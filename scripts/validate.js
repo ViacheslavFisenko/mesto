@@ -1,5 +1,4 @@
 // валидация
-
 const setInputValidState = ({ inputErrorClass }, input, erorElement) => {
   input.classList.remove(inputErrorClass)
   erorElement.textContent = ' '
@@ -52,7 +51,7 @@ const enableValidation = ({ formSelector, inputSelector, ...rest }) => {
     })
 
     toggleButtonValidity(rest, form)
-
+    submitButtonDisable(rest)
     //перебрал псевдомассив импутов, нашел там все импуты и добавил валидацию на каждый импут.
     const imputs = form.querySelectorAll(inputSelector) //присваиваю переменную всем импутам
     const imputsArray = Array.from(imputs) //создал псевдо массив импутов
@@ -63,6 +62,12 @@ const enableValidation = ({ formSelector, inputSelector, ...rest }) => {
       })
     })
   })
+}
+
+const submitButtonDisable = ({ inactiveButtonClass }, submitButtonSelector) => {
+  submitButtonSelector.setAttribute('disabled', '')
+  submitButtonSelector.classList.add(inactiveButtonClass)
+
 }
 
 enableValidation({

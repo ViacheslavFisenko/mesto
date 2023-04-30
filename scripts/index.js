@@ -56,6 +56,7 @@ const closePopup = (editPopup) => {
 const openPopup = (editPopup) => {
   editPopup.classList.add("popup_opened");
   document.addEventListener('keydown', handleCloseByEsc)
+  submitButtonDisable(submitButtonSelector)
 }
 
 //ниже описан функционал редактирования профиля 
@@ -104,7 +105,6 @@ const createCardElement = (cardData) => {
 
   const handleLike = () => {
     likeButton.classList.toggle('place__like-img_active')
-
   }
 
   deleteButton.addEventListener('click', handleDelete)
