@@ -53,14 +53,13 @@ const viewPopupButtonClose = document.querySelector(".popup__close_type_view")
 const closePopup = (editPopup) => {
   editPopup.classList.remove("popup_opened");
   document.removeEventListener('keydown', handleCloseByEsc)
-  disableButton('popup__submit-button_disabled', popupImgSubmitButton)
 }
 
 //эта переиспользуемая функция открывает попапы
 const openPopup = (editPopup) => {
   editPopup.classList.add("popup_opened");
   document.addEventListener('keydown', handleCloseByEsc)
-  disableButton(popupImgSubmitButton)
+  disableButton('popup__submit-button_disabled', popupImgSubmitButton)
 }
 
 //ниже описан функционал редактирования профиля 
