@@ -25,6 +25,8 @@ const initialCards = [
   }
 ];
 
+import { disableButton } from "./validate.js";
+
 const buttonEditProfile = document.querySelector(".profile__edit");
 const profileName = document.querySelector(".profile__name")
 const discription = document.querySelector(".profile__description")
@@ -41,6 +43,7 @@ const editPopupForm = editPopup.querySelector(".popup__content_type_edit")
 const popupImg = document.querySelector(".popup_type_show-image");
 const popupImgButtonClose = document.querySelector(".popup__close_type_img");
 const popupImgForm = document.querySelector(".popup__content_type_img");
+const popupImgSubmitButton = popupImgForm.querySelector('.popup__submit-button')
 
 //далее идут переменные относящиеся к .popup-view/просмотр изображений
 const viewPopup = document.querySelector(".popup_type_show-view")
@@ -50,13 +53,14 @@ const viewPopupButtonClose = document.querySelector(".popup__close_type_view")
 const closePopup = (editPopup) => {
   editPopup.classList.remove("popup_opened");
   document.removeEventListener('keydown', handleCloseByEsc)
+  disableButton('popup__submit-button_disabled', popupImgSubmitButton)
 }
 
 //эта переиспользуемая функция открывает попапы
 const openPopup = (editPopup) => {
   editPopup.classList.add("popup_opened");
   document.addEventListener('keydown', handleCloseByEsc)
-  submitButtonDisable(submitButtonSelector)
+  disableButton(popupImgSubmitButton)
 }
 
 //ниже описан функционал редактирования профиля 
