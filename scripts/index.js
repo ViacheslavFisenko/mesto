@@ -25,44 +25,38 @@ const initialCards = [
   }
 ];
 
-import { disableButton } from "./validate.js";
+
 
 const buttonEditProfile = document.querySelector(".profile__edit");
 const profileName = document.querySelector(".profile__name")
 const discription = document.querySelector(".profile__description")
 const buttonAddProfile = document.querySelector(".profile__add");
 
-//далее идут переменные относящиеся к .popup
 const editPopup = document.querySelector(".popup_type_show-edit");
 const buttonClosePopupProfile = editPopup.querySelector(".popup__close_type_edit");
 const nameImput = editPopup.querySelector(".popup__input_add_firstname");
 const dicsImput = editPopup.querySelector(".popup__input_add_disc");
 const editPopupForm = editPopup.querySelector(".popup__content_type_edit")
 
-//далее идут переменные относящиеся к .popup_type_show-image/добавление карточек
 const popupImg = document.querySelector(".popup_type_show-image");
 const popupImgButtonClose = document.querySelector(".popup__close_type_img");
 const popupImgForm = document.querySelector(".popup__content_type_img");
 const popupImgSubmitButton = popupImgForm.querySelector('.popup__submit-button')
 
-//далее идут переменные относящиеся к .popup-view/просмотр изображений
 const viewPopup = document.querySelector(".popup_type_show-view")
 const viewPopupButtonClose = document.querySelector(".popup__close_type_view")
 
-//эта переиспользуемая функция закрывает попапы
 const closePopup = (editPopup) => {
   editPopup.classList.remove("popup_opened");
   document.removeEventListener('keydown', handleCloseByEsc)
 }
 
-//эта переиспользуемая функция открывает попапы
 const openPopup = (editPopup) => {
   editPopup.classList.add("popup_opened");
   document.addEventListener('keydown', handleCloseByEsc)
   disableButton('popup__submit-button_disabled', popupImgSubmitButton)
 }
 
-//ниже описан функционал редактирования профиля 
 buttonEditProfile.addEventListener("click", () => {
   openPopup(editPopup);
   nameImput.value = profileName.textContent;
@@ -80,10 +74,8 @@ editPopupForm.addEventListener("submit", (event) => {
   const disc = dicsImput.value;
   discription.textContent = disc;
   closePopup(editPopup);
-
 });
 
-//ниже описан рендеринг шаблона
 const cardsTemplate = document.getElementById("cards-template")
 const placesContainer = document.querySelector(".places__container")
 
@@ -102,17 +94,13 @@ const createCardElement = (cardData) => {
   const deleteButton = cardElement.querySelector(".place__delete")
   const likeButton = cardElement.querySelector(".place__like")
 
-  const handleDelete = () => {
+  deleteButton.addEventListener('click', () => {
     cardElement.remove()
-  }
+  })
 
-  const handleLike = () => {
+  likeButton.addEventListener('click', () => {
     likeButton.classList.toggle('place__like-img_active')
-  }
-
-  deleteButton.addEventListener('click', handleDelete)
-
-  likeButton.addEventListener('click', handleLike)
+  })
 
   cardImage.addEventListener('click', (event) => {
     event.preventDefault();
@@ -141,7 +129,6 @@ initialCards.forEach((card) => {
   renderCardElement(createCardElement(card))
 })
 
-//ниже описан функционал добавления карточек
 buttonAddProfile.addEventListener("click", () => {
   openPopup(popupImg);
   placeImput.value = ""
@@ -169,8 +156,6 @@ const handleEditCardSubmit = (event) => {
 
 popupImgForm.addEventListener("submit", handleEditCardSubmit)
 
-// функционал закрытия на ESC
-
 const handleCloseByEsc = (event) => {
   if (event.key === "Escape") {
     const popupOpened = document.querySelector('.popup_opened')
@@ -190,3 +175,8 @@ const handleClosebyClickonOverlay = (event) => {
   })
 }
 handleClosebyClickonOverlay()
+
+
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
