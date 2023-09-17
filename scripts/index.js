@@ -1,4 +1,5 @@
 import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -43,7 +44,7 @@ const editPopupForm = editPopup.querySelector(".popup__content_type_edit")
 const popupImg = document.querySelector(".popup_type_show-image");
 const popupImgButtonClose = document.querySelector(".popup__close_type_img");
 const popupImgForm = document.querySelector(".popup__content_type_img");
-const popupImgSubmitButton = popupImgForm.querySelector('.popup__submit-button')
+
 
 
 
@@ -57,7 +58,6 @@ export const closePopup = (editPopup) => {
 export const openPopup = (editPopup) => {
   editPopup.classList.add("popup_opened");
   document.addEventListener('keydown', handleCloseByEsc)
-  disableButton('popup__submit-button_disabled', popupImgSubmitButton)
 }
 
 // Ниже описан функционал редактирования профиля 
@@ -81,7 +81,6 @@ editPopupForm.addEventListener("submit", (event) => {
 });
 
 // Ниже описан рендеринг шаблона
-const cardsTemplate = document.getElementById("cards-template")
 const placesContainer = document.querySelector(".places__container")
 
 // Ниже описан функционал добавления карточек
@@ -146,80 +145,12 @@ handleClosebyClickonOverlay()
 
 // Валидация
 
-const setInputValidState = ({ inputErrorClass }, input, erorElement) => {
-  input.classList.remove(inputErrorClass)
-  erorElement.textContent = ' '
-}
-
-const setInputInvalidState = ({ inputErrorClass }, input, erorElement) => {
-  input.classList.add(inputErrorClass)
-  erorElement.textContent = input.validationMessage
-}
-
-const checkImputValidity = (rest, input) => {
-  const erorElement = document.querySelector(`#eror-${input.id}`)
-  // Валидный
-  if (input.validity.valid) {
-    setInputValidState(rest, input, erorElement)
-    // Невалидный
-  } else {
-    setInputInvalidState(rest, input, erorElement)
-  }
-}
-
-const disableButton = (inactiveButtonClass, button) => {
-  button.setAttribute('disabled', '')
-  button.classList.add(inactiveButtonClass)
-}
-
-const enableButton = (inactiveButtonClass, button) => {
-  button.removeAttribute('disabled')
-  button.classList.remove(inactiveButtonClass)
-}
-
-const toggleButtonValidity = ({ submitButtonSelector, inactiveButtonClass }, form) => {
-  const submitButton = form.querySelector(submitButtonSelector)
-  if (form.checkValidity()) {
-    enableButton(inactiveButtonClass, submitButton)
-  } else {
-    disableButton(inactiveButtonClass, submitButton)
-  }
-}
-
-const enableValidation = ({ formSelector, inputSelector, ...rest }) => {
-  const forms = document.querySelectorAll(formSelector) // Присваиваю переменную всем формам в документе
-  const formsArray = Array.from(forms) // Создал псевдо массив форм
-
-  // Перебрал псевдомассив форм, нашел там кнопки отправки и отключил их настройки.
-  formsArray.forEach((form) => {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      toggleButtonValidity(rest, form)
-    })
-
-    toggleButtonValidity(rest, form)
-
-    // Перебрал псевдомассив импутов, нашел там все импуты и добавил валидацию на каждый импут.
-    const imputs = form.querySelectorAll(inputSelector) // Присваиваю переменную всем импутам
-    const imputsArray = Array.from(imputs) // Создал псевдо массив импутов
-    imputsArray.forEach((input) => {
-      input.addEventListener('input', () => {
-        checkImputValidity(rest, input)
-        toggleButtonValidity(rest, form)
-      })
-    })
-  })
-}
-
-enableValidation({
+export const formValidator = new FormValidator({
   formSelector: '.popup__content',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputErrorClass: 'popup__input_invalid',
-  errorClass: 'popup__eror-message'
+  errorClass: 'popup__error-message'
 });
-
-
-
 
