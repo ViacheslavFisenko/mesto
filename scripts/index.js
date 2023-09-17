@@ -44,8 +44,7 @@ const editPopupForm = editPopup.querySelector(".popup__content_type_edit")
 const popupImg = document.querySelector(".popup_type_show-image");
 const popupImgButtonClose = document.querySelector(".popup__close_type_img");
 const popupImgForm = document.querySelector(".popup__content_type_img");
-
-
+const viewPopup = document.querySelector(".popup_type_show-view");
 
 
 
@@ -66,6 +65,12 @@ buttonEditProfile.addEventListener("click", () => {
   nameImput.value = profileName.textContent;
   dicsImput.value = discription.textContent;
 });
+
+const closeButton = viewPopup.querySelector(".popup__close_type_view");
+closeButton.addEventListener("click", () => {
+  closePopup(viewPopup);
+});
+
 
 buttonClosePopupProfile.addEventListener("click", () => {
   closePopup(editPopup);
@@ -100,9 +105,11 @@ const srcImput = popupImgForm.querySelector(".popup__input_add_src")
 const cardsContainer = document.querySelector(".places__container"); // Контейнер для карточек
 
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#cards-template", popupImg);
-  card.addToContainer(cardsContainer); // Добавляем карточку в контейнер
+  const card = new Card(cardData, "#cards-template");
+  const cardElement = card.createCard(); // Создаем карточку с помощью метода createCard
+  cardsContainer.append(cardElement); // Вставляем карточку в контейнер
 });
+
 const handleEditCardSubmit = (event) => {
   event.preventDefault()
   const name = placeImput.value
@@ -142,6 +149,9 @@ const handleClosebyClickonOverlay = (event) => {
   })
 }
 handleClosebyClickonOverlay()
+
+
+
 
 // Валидация
 

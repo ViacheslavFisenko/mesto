@@ -46,24 +46,10 @@ export class Card {
     popupViewImage.alt = this._name;
     popupViewDescription.textContent = this._name;
     openPopup(viewPopup);
-    const closeButton = viewPopup.querySelector(".popup__close_type_view");
-    closeButton.addEventListener("click", () => {
-      closePopup(viewPopup);
-    });
+    
   }
 
-  addToContainer(container) {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-
-    this._element.querySelector(".place__title").textContent = this._name;
-    this._element.querySelector(".place__image").src = this._link;
-    this._element.querySelector(".place__image").alt = this._name;
-
-    container.append(this._element); // Добавляем карточку в контейнер
-  }
-
-  // Новый метод для создания и инициализации карточки
+   // Новый метод для создания и инициализации карточки
   createCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
