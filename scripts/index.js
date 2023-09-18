@@ -1,32 +1,7 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import { initialCards } from "./initialCards.js";
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 const buttonEditProfile = document.querySelector(".profile__edit");
 const profileName = document.querySelector(".profile__name")
@@ -46,8 +21,6 @@ const popupImgButtonClose = document.querySelector(".popup__close_type_img");
 const popupImgForm = document.querySelector(".popup__content_type_img");
 const viewPopup = document.querySelector(".popup_type_show-view");
 
-
-
 // Эта переиспользуемая функция закрывает попапы
 export const closePopup = (editPopup) => {
   editPopup.classList.remove("popup_opened");
@@ -61,6 +34,7 @@ export const openPopup = (editPopup) => {
 
 // Ниже описан функционал редактирования профиля 
 buttonEditProfile.addEventListener("click", () => {
+  formValidator1.resetError();
   openPopup(editPopup);
   nameImput.value = profileName.textContent;
   dicsImput.value = discription.textContent;
@@ -90,9 +64,9 @@ const placesContainer = document.querySelector(".places__container")
 
 // Ниже описан функционал добавления карточек
 buttonAddProfile.addEventListener("click", () => {
+  formValidator2.resetError();
   openPopup(popupImg);
-  placeImput.value = ""
-  srcImput.value = ""
+  popupImgForm.reset()
 });
 
 popupImgButtonClose.addEventListener("click", () => {
@@ -110,22 +84,24 @@ initialCards.forEach((cardData) => {
   cardsContainer.append(cardElement); // Вставляем карточку в контейнер
 });
 
-const handleEditCardSubmit = (event) => {
-  event.preventDefault()
-  const name = placeImput.value
-  const link = srcImput.value
+function addNewCard(name, link) {
   const placeData = {
-    name,
-    link,
-  }
+      name,
+      link,
+  };
 
   const card = new Card(placeData, "#cards-template");
-  const cardElement = card.createCard(); // Создаем карточку с помощью метода createCard
+  const cardElement = card.createCard();
   placesContainer.prepend(cardElement);
   closePopup(popupImg);
 }
 
-popupImgForm.addEventListener("submit", handleEditCardSubmit);
+popupImgForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const name = placeImput.value;
+  const link = srcImput.value;
+  addNewCard(name, link);
+});
 
 
 // Функционал закрытия на ESC
@@ -148,19 +124,30 @@ const handleClosebyClickonOverlay = (event) => {
     })
   })
 }
+
 handleClosebyClickonOverlay()
-
-
-
 
 // Валидация
 
-export const formValidator = new FormValidator({
+const formValidator1 = new FormValidator({
   formSelector: '.popup__content',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputErrorClass: 'popup__input_invalid',
   errorClass: 'popup__error-message'
-});
+}, editPopup); // Передаем элемент формы вторым параметром
+
+formValidator1.enableValidation();
+
+const formValidator2 = new FormValidator({
+  formSelector: '.popup__content',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_invalid',
+  errorClass: 'popup__error-message'
+}, popupImg); // Передаем элемент формы вторым параметром
+
+formValidator2.enableValidation();
 

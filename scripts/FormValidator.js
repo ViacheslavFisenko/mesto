@@ -1,5 +1,3 @@
-import { formValidator } from "./index.js";
-
 class FormValidator {
     constructor({
         formSelector,
@@ -8,8 +6,9 @@ class FormValidator {
         inactiveButtonClass,
         inputErrorClass,
         errorClass,
-    }) {
-        this.formSelector = formSelector;
+    }, formElement) {
+        this.formElement = formElement;
+        this.form = formElement.querySelector(formSelector); // Находим форму внутри formElement
         this.inputSelector = inputSelector;
         this.submitButtonSelector = submitButtonSelector;
         this.inactiveButtonClass = inactiveButtonClass;
@@ -30,7 +29,7 @@ class FormValidator {
     }
 
     checkInputValidity(input) {
-        const errorElement = document.querySelector(`#eror-${input.id}`);
+        const errorElement = this.formElement.querySelector(`#eror-${input.id}`);
         if (input.validity.valid) {
             this.setInputValidState(input, errorElement);
         }
@@ -39,46 +38,50 @@ class FormValidator {
         }
     }
 
-    disableButton(form) {
-        const submitButton = form.querySelector(this.submitButtonSelector);
+    disableButton() {
+        const submitButton = this.formElement.querySelector(this.submitButtonSelector);
         submitButton.setAttribute('disabled', '');
         submitButton.classList.add(this.inactiveButtonClass);
     }
 
-    enableButton(form) {
-        const submitButton = form.querySelector(this.submitButtonSelector);
+    enableButton() {
+        const submitButton = this.formElement.querySelector(this.submitButtonSelector);
         submitButton.removeAttribute('disabled');
         submitButton.classList.remove(this.inactiveButtonClass);
     }
 
-    toggleButtonValidity(form) {
-        if (form.checkValidity()) {
-            this.enableButton(form); // Вызывает метод enableButton
+    toggleButtonValidity() {
+        if (this.form.checkValidity()) { // Используем this.form
+            this.enableButton(); // Вызывает метод enableButton
         } else {
-            this.disableButton(form); // Вызывает метод disableButton
+            this.disableButton(); // Вызывает метод disableButton
         }
     }
 
     enableValidation() {
-        const forms = document.querySelectorAll(this.formSelector);
-        const formsArray = Array.from(forms);
-        formsArray.forEach((form) => {
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-                this.toggleButtonValidity(form);
-            });
+        this.formElement.addEventListener('submit', (event) => {
+            event.preventDefault();
+            this.toggleButtonValidity();
+        });
 
-            this.toggleButtonValidity(form);
+        this.toggleButtonValidity();
 
-            const inputs = form.querySelectorAll(this.inputSelector);
-            const inputsArray = Array.from(inputs);
-            inputsArray.forEach((input) => {
-                input.addEventListener('input', () => {
-                    this.checkInputValidity(input);
-                    this.toggleButtonValidity(form);
-                });
+        const inputs = this.formElement.querySelectorAll(this.inputSelector);
+        inputs.forEach((input) => {
+            input.addEventListener('input', () => {
+                this.checkInputValidity(input);
+                this.toggleButtonValidity();
             });
         });
+    }
+
+    resetError() {
+        const inputs = this.formElement.querySelectorAll(this.inputSelector);
+        inputs.forEach((input) => {
+            this.setInputValidState(input, input.nextElementSibling);
+        });
+
+        this.toggleButtonValidity();
     }
 }
 
