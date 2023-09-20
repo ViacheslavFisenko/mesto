@@ -34,7 +34,7 @@ export const openPopup = (editPopup) => {
 
 // Ниже описан функционал редактирования профиля 
 buttonEditProfile.addEventListener("click", () => {
-  formValidator1.resetError();
+  formForAddingCard.resetError();
   openPopup(editPopup);
   nameImput.value = profileName.textContent;
   dicsImput.value = discription.textContent;
@@ -64,13 +64,14 @@ const placesContainer = document.querySelector(".places__container")
 
 // Ниже описан функционал добавления карточек
 buttonAddProfile.addEventListener("click", () => {
-  formValidator2.resetError();
+  formForAddingCard.resetError();
   openPopup(popupImg);
   popupImgForm.reset()
 });
 
 popupImgButtonClose.addEventListener("click", () => {
   closePopup(popupImg);
+  popupImgForm.reset()
 });
 
 const placeImput = popupImgForm.querySelector(".popup__input_add_place")
@@ -78,31 +79,33 @@ const srcImput = popupImgForm.querySelector(".popup__input_add_src")
 
 const cardsContainer = document.querySelector(".places__container"); // Контейнер для карточек
 
-initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#cards-template");
-  const cardElement = card.createCard(); // Создаем карточку с помощью метода createCard
-  cardsContainer.append(cardElement); // Вставляем карточку в контейнер
-});
 
-function addNewCard(name, link) {
+function createCard(name, link){
   const placeData = {
-      name,
-      link,
-  };
+    name,
+    link,
+};
+const card = new Card(placeData, "#cards-template");
+const cardElement = card.createCard();
+return cardElement;
+}
 
-  const card = new Card(placeData, "#cards-template");
-  const cardElement = card.createCard();
-  placesContainer.prepend(cardElement);
-  closePopup(popupImg);
+function addNewCard(name, link, container) {
+container.prepend(createCard(name, link));
+closePopup(popupImg);
 }
 
 popupImgForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const name = placeImput.value;
-  const link = srcImput.value;
-  addNewCard(name, link);
+event.preventDefault();
+const name = placeImput.value;
+const link = srcImput.value;
+addNewCard(name, link, placesContainer);
+popupImgForm.reset()
 });
 
+initialCards.forEach((cardData) => {
+cardsContainer.append(createCard(cardData.name, cardData.link)); 
+}); 
 
 // Функционал закрытия на ESC
 
@@ -129,7 +132,7 @@ handleClosebyClickonOverlay()
 
 // Валидация
 
-const formValidator1 = new FormValidator({
+const profileEditingForm = new FormValidator({
   formSelector: '.popup__content',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
@@ -138,16 +141,16 @@ const formValidator1 = new FormValidator({
   errorClass: 'popup__error-message'
 }, editPopup); // Передаем элемент формы вторым параметром
 
-formValidator1.enableValidation();
+profileEditingForm.enableValidation();
 
-const formValidator2 = new FormValidator({
+const formForAddingCard = new FormValidator({
   formSelector: '.popup__content',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputErrorClass: 'popup__input_invalid',
   errorClass: 'popup__error-message'
-}, popupImg); // Передаем элемент формы вторым параметром
+}, popupImg ); // Передаем элемент формы вторым параметром
 
-formValidator2.enableValidation();
+formForAddingCard.enableValidation();
 

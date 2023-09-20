@@ -14,7 +14,8 @@ class FormValidator {
         this.inactiveButtonClass = inactiveButtonClass;
         this.inputErrorClass = inputErrorClass;
         this.errorClass = errorClass;
-
+        this.submitButton = this.formElement.querySelector(this.submitButtonSelector);
+        this.inputList = this.formElement.querySelectorAll(this.inputSelector);
         this.enableValidation();
     }
 
@@ -39,15 +40,13 @@ class FormValidator {
     }
 
     disableButton() {
-        const submitButton = this.formElement.querySelector(this.submitButtonSelector);
-        submitButton.setAttribute('disabled', '');
-        submitButton.classList.add(this.inactiveButtonClass);
+        this.submitButton.setAttribute('disabled', '');
+        this.submitButton.classList.add(this.inactiveButtonClass);
     }
 
     enableButton() {
-        const submitButton = this.formElement.querySelector(this.submitButtonSelector);
-        submitButton.removeAttribute('disabled');
-        submitButton.classList.remove(this.inactiveButtonClass);
+        this.submitButton.removeAttribute('disabled');
+        this.submitButton.classList.remove(this.inactiveButtonClass);
     }
 
     toggleButtonValidity() {
@@ -66,8 +65,7 @@ class FormValidator {
 
         this.toggleButtonValidity();
 
-        const inputs = this.formElement.querySelectorAll(this.inputSelector);
-        inputs.forEach((input) => {
+        this.inputList.forEach((input) => {
             input.addEventListener('input', () => {
                 this.checkInputValidity(input);
                 this.toggleButtonValidity();
@@ -76,8 +74,7 @@ class FormValidator {
     }
 
     resetError() {
-        const inputs = this.formElement.querySelectorAll(this.inputSelector);
-        inputs.forEach((input) => {
+        this.inputList.forEach((input) => {
             this.setInputValidState(input, input.nextElementSibling);
         });
 
