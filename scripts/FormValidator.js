@@ -7,9 +7,11 @@ class FormValidator {
         inputErrorClass,
         errorClass,
     }, formElement) {
+        
         this.formElement = formElement;
-        this.form = formElement.querySelector(formSelector); // Находим форму внутри formElement
+        this.form = this.formElement.querySelector(formSelector); // Находим форму внутри formElement
         this.inputSelector = inputSelector;
+        console.log (this.form)
         this.submitButtonSelector = submitButtonSelector;
         this.inactiveButtonClass = inactiveButtonClass;
         this.inputErrorClass = inputErrorClass;
@@ -18,7 +20,7 @@ class FormValidator {
         this.inputList = this.formElement.querySelectorAll(this.inputSelector);
         this.enableValidation();
     }
-
+ 
     setInputValidState(input, errorElement) {
         input.classList.remove(this.inputErrorClass);
         errorElement.textContent = ' ';
@@ -50,6 +52,7 @@ class FormValidator {
     }
 
     toggleButtonValidity() {
+       
         if (this.form.checkValidity()) { // Используем this.form
             this.enableButton(); // Вызывает метод enableButton
         } else {
