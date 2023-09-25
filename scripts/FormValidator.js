@@ -9,9 +9,8 @@ class FormValidator {
     }, formElement) {
         
         this.formElement = formElement;
-        this.form = this.formElement.querySelector(formSelector); // Находим форму внутри formElement
+        this.form = this.formElement
         this.inputSelector = inputSelector;
-        console.log (this.form)
         this.submitButtonSelector = submitButtonSelector;
         this.inactiveButtonClass = inactiveButtonClass;
         this.inputErrorClass = inputErrorClass;
