@@ -118,7 +118,7 @@ handleClosebyClickonOverlay()
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const profileEditingForm = new FormValidator({
+  const profileEditingFormValidation = new FormValidator({
     formSelector: '.popup__content',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit-button',
@@ -127,13 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
     errorClass: 'popup__error-message'
   }, editPopupForm); // Передаем элемент формы вторым параметром
 
-  profileEditingForm.enableValidation();
+  profileEditingFormValidation.enableValidation();
 });
 
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const formForAddingCard = new FormValidator({
+  const formForEddingCardValidation = new FormValidator({
     formSelector: '.popup__content',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit-button',
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Ниже описан функционал редактирования профиля 
   buttonEditProfile.addEventListener("click", () => {
-    formForAddingCard.resetError();
+    formForEddingCardValidation.resetError();
     openPopup(editPopup);
     nameImput.value = profileName.textContent;
     dicsImput.value = discription.textContent;
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Ниже описан функционал добавления карточек
   buttonAddProfile.addEventListener("click", () => {
-    formForAddingCard.resetError();
+    formForEddingCardValidation.resetError();
     openPopup(popupImg);
     popupImgForm.reset()
   });
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     popupImgForm.reset()
   });
 
-  formForAddingCard.enableValidation();
+  formForEddingCardValidation.enableValidation();
 });
 
 

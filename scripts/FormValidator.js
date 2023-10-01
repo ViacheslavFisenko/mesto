@@ -17,7 +17,7 @@ class FormValidator {
         this.errorClass = errorClass;
         this.submitButton = this.formElement.querySelector(this.submitButtonSelector);
         this.inputList = this.formElement.querySelectorAll(this.inputSelector);
-        this.enableValidation();
+        
     }
  
     setInputValidState(input, errorElement) {
