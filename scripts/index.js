@@ -1,6 +1,8 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { initialCards } from "./initialCards.js";
+import { Section } from "./Section.js";
+
 
 
 const buttonEditProfile = document.querySelector(".profile__edit");
@@ -54,15 +56,9 @@ editPopupForm.addEventListener("submit", (event) => {
 });
 
 // Ниже описан рендеринг шаблона
-const placesContainer = document.querySelector(".places__container")
-
-
-
-const placeImput = popupImgForm.querySelector(".popup__input_add_place")
-const srcImput = popupImgForm.querySelector(".popup__input_add_src")
-
-const cardsContainer = document.querySelector(".places__container"); // Контейнер для карточек
-
+const placesContainer = document.querySelector(".places__container");
+const placeImput = popupImgForm.querySelector(".popup__input_add_place");
+const srcImput = popupImgForm.querySelector(".popup__input_add_src");
 
 function createCard(name, link) {
   const placeData = {
@@ -74,22 +70,41 @@ function createCard(name, link) {
   return cardElement;
 }
 
-function addNewCard(name, link, container) {
-  container.prepend(createCard(name, link));
-  closePopup(popupImg);
-}
+// Создайте экземпляр класса Section для добавления новых карточек
+const cardsSection = new Section({
+  items: [], // Передайте пустой массив, так как начальные карточки уже отрисованы
+  renderer: (cardData) => { // Функция-рендерер для создания DOM-элементов
+    const cardElement = createCard(cardData.name, cardData.link);
+    cardsSection.addItem(cardElement);
+  }
+}, '.places__container');
+
+
+// Создайте экземпляр класса Section для отрисовки начальных карточек
+const initialCardsSection = new Section({
+  items: initialCards, // Массив данных для отрисовки
+  renderer: (cardData) => { // Функция-рендерер для создания DOM-элементов
+    const cardElement = createCard(cardData.name, cardData.link);
+    initialCardsSection.addItem(cardElement);
+  }
+}, '.places__container');
+
+// Вызовите метод renderItems для отрисовки начальных карточек
+initialCardsSection.renderItems();
+
 
 popupImgForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const name = placeImput.value;
   const link = srcImput.value;
-  addNewCard(name, link, placesContainer);
-  popupImgForm.reset()
+  const cardElement = createCard(name, link);
+  cardsSection.addItem(cardElement); // Добавьте новую карточку с использованием Section
+  popupImgForm.reset();
+  closePopup(popupImg);
 });
 
-initialCards.forEach((cardData) => {
-  cardsContainer.append(createCard(cardData.name, cardData.link));
-});
+
+
 
 // Функционал закрытия на ESC
 
