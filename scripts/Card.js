@@ -1,9 +1,9 @@
-import { openPopup, closePopup } from './index.js';
 export class Card {
-  constructor(cardData, templateSelector,) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -25,7 +25,9 @@ export class Card {
 
     this._element
       .querySelector(".place__image")
-      .addEventListener("click", this._handleImageClick.bind(this));
+      .addEventListener("click", () => {
+        this._handleCardClick(this._name, this._link);
+      });
   }
 
   _handleLikeClick() {
@@ -37,20 +39,7 @@ export class Card {
     this._element.remove();
   }
 
-  _handleImageClick() {
-    // Далее идут переменные относящиеся к .popup-view/просмотр изображений
-    const viewPopup = document.querySelector(".popup_type_show-view");
-    const popupViewImage = viewPopup.querySelector(".popup__image");
-    const popupViewDescription = viewPopup.querySelector(".popup__description");
-    popupViewImage.src = this._link;
-    popupViewImage.alt = this._name;
-    popupViewDescription.textContent = this._name;
-    openPopup(viewPopup);
-    
-  }
-
-   // Новый метод для создания и инициализации карточки
-  createCard() {
+  _createCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
 
