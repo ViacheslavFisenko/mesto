@@ -5,6 +5,7 @@ import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
 import { UserInfo } from "./UserInfo.js";
 import { PopupWithForm } from "./PopupWithForm.js";
+import '../pages/index.css'
 
 const buttonEditProfile = document.querySelector(".profile__edit");
 const profileName = document.querySelector(".profile__name")
