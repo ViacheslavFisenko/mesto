@@ -4,6 +4,11 @@ export class Card {
     this._link = cardData.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+
+    this._element = this._getTemplate();
+
+    // Вызываем _setEventListeners() для установки обработчиков
+    this._setEventListeners();
   }
 
   _getTemplate() {
@@ -15,37 +20,30 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".place__like")
-      .addEventListener("click", this._handleLikeClick.bind(this));
+    // Находим элементы карточки и сохраняем их в свойствах класса
+    this._likeButton = this._element.querySelector(".place__like");
+    this._deleteButton = this._element.querySelector(".place__delete");
+    this._imageElement = this._element.querySelector(".place__image");
 
-    this._element
-      .querySelector(".place__delete")
-      .addEventListener("click", this._handleDeleteClick.bind(this));
-
-    this._element
-      .querySelector(".place__image")
-      .addEventListener("click", () => {
-        this._handleCardClick(this._name, this._link);
-      });
+    this._likeButton.addEventListener("click", this._handleLikeClick.bind(this));
+    this._deleteButton.addEventListener("click", this._handleDeleteClick.bind(this));
+    this._imageElement.addEventListener("click", () => {
+      this._handleCardClick(this._name, this._link);
+    });
   }
 
   _handleLikeClick() {
-    const likeButton = this._element.querySelector(".place__like");
-    likeButton.classList.toggle("place__like-img_active");
+    this._likeButton.classList.toggle("place__like-img_active");
   }
 
   _handleDeleteClick() {
     this._element.remove();
   }
 
-  _createCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-
+  createCard() {
     this._element.querySelector(".place__title").textContent = this._name;
-    this._element.querySelector(".place__image").src = this._link;
-    this._element.querySelector(".place__image").alt = this._name;
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._name;
 
     return this._element;
   }

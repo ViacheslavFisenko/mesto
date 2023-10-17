@@ -93,7 +93,7 @@ const createCard = (name, link) => {
 
   // Создаем экземпляр класса Card и передаем handleCardClick
   const card = new Card(placeData, "#cards-template", handleCardClick);
-  const cardElement = card._createCard();
+  const cardElement = card.createCard();
 
   return cardElement;
 }
