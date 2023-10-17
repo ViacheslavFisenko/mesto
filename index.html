@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>место</title>
+<script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
+
+<body class="page">
+  <header class="header">
+    <img class="header__logo" alt="место" src="e1792cd1bf55c68d1538.svg">
+  </header>
+  <main class="main">
+    <section class="profile">
+      <div class="profile__avatar">
+        <img class="profile__image" src="3e08c5d9d1058ad5b39a.jpg" alt="аватар">
+      </div>
+      <div class="profile__block">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button type="button" class="profile__edit">
+            <img class="profile__edit-img" alt="место" src="8667ac4a523e8fc42e59.svg">
+          </button>
+        </div>
+        <p class="profile__description">Исследователь океана</p>
+      </div>
+      <button type="button" class="profile__add">
+        <img class="profile__add-img" alt="место" src="d86bb2edc2f6eadb96b7.svg">
+      </button>
+    </section>
+    <div class="content">
+      <section class="places">
+        <ul class="places__container">
+
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">© 2020 Mesto Russia</p>
+  </footer>
+  <section class="popup popup_type_show-edit">
+    <div class="popup__container">
+      <button type="button" class="popup__close popup__close_type_edit"> <img class="popup__close-img" alt="х"
+          src="2ceb783afbab75916ddc.svg"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__content popup__content_type_edit" name="popupFormm" novalidate>
+        <input id="username" class="popup__input popup__input_add_firstname" minlength="2" maxlength="40" required
+          type="text" name="name" placeholder="Жак-Ив Кусто">
+        <span id="eror-username" class="popup__eror-message"></span>
+        <input id="disc" class="popup__input popup__input_add_disc" minlength="2" maxlength="200" required type="text"
+          name="description" placeholder="Исследователь океана">
+        <span id="eror-disc" class="popup__eror-message"></span>
+        <button class="popup__submit-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_type_show-image">
+    <div class="popup__container">
+      <button type="button" class="popup__close popup__close_type_img"> <img class="popup__close-img" alt="х"
+          src="2ceb783afbab75916ddc.svg"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__content popup__content_type_img" name="popupFormm" novalidate>
+        <input id="place" class="popup__input popup__input_add_place" minlength="2" maxlength="30" required type="text"
+          name="place" placeholder="Название">
+        <span id="eror-place" class="popup__eror-message"></span>
+        <input id="src" class="popup__input popup__input_add_src" required type="url" name="src"
+          placeholder="Ссылка на картинку">
+        <span id="eror-src" class="popup__eror-message"></span>
+        <button class="popup__submit-button" type="submit">Создать</button>
+      </form>
+
+    </div>
+  </section>
+  <template id="cards-template">
+    <li class="place">
+      <button type="button" class="place__delete">
+        <img class="place__delete-img" alt="удалить" src="823b0cf1b0b7e9cb7cad.svg">
+      </button>
+      <img class="place__image" src="2cab00f086afcafe47f5.jpg" alt="Изображение города">
+      <div class="place__description">
+        <h2 class="place__title">Карачаевск</h2>
+        <button type="button" class="place__like ">
+          <div class="place__like-img"></div>
+        </button>
+      </div>
+    </li>
+  </template>
+  <section class="popup popup_type_show-view ">
+    <div class="popup__container popup__container_type_show-view">
+      <button type="button" class="popup__close popup__close_type_view"> <img class="popup__close-img" alt="х"
+          src="2ceb783afbab75916ddc.svg"></button>
+      <figure class="popup__view-caption">
+        <img class="popup__image" src="2cab00f086afcafe47f5.jpg" alt="">
+        <figcaption class="popup__description">Карачаевск</figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+</body>
+
+</html>
