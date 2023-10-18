@@ -9,10 +9,8 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import '../pages/index.css';
 
 const buttonEditProfile = document.querySelector(".profile__edit");
-const profileName = document.querySelector(".profile__name");
-const description = document.querySelector(".profile__description");
 const buttonAddProfile = document.querySelector(".profile__add");
-const buttonClosePopupProfile = document.querySelector(".popup__close_type_edit");
+
 const nameInput = document.querySelector(".popup__input_add_firstname");
 const descInput = document.querySelector(".popup__input_add_disc");
 const editPopupForm = document.querySelector(".popup__content_type_edit");
@@ -20,8 +18,7 @@ const editPopupForm = document.querySelector(".popup__content_type_edit");
 const editProfilePopup = new PopupWithForm('.popup_type_show-edit', (formData) => {
   const name = formData.name;
   const description = formData.description;
-
-  userInfo.setUserInfo({ name, info: description });
+  userInfo.setUserInfo({ name, info: description }); 
   editProfilePopup.close();
 });
 editProfilePopup.setEventListeners();
@@ -29,27 +26,15 @@ editProfilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm('.popup_type_show-image', (formData) => {
   const place = formData.place;
   const src = formData.src;
-
   const cardElement = createCard(place, src);
   cardsSection.addItem(cardElement);
+  addCardPopup.close();
 });
 addCardPopup.setEventListeners();
 
-
-
-const popupImgButtonClose = document.querySelector(".popup__close_type_img");
 const popupImgForm = document.querySelector(".popup__content_type_img");
 const viewPopup = new PopupWithImage('.popup_type_show-view');
 viewPopup.setEventListeners();
-const viewPopupButtonClose = document.querySelector(".popup__close_type_view");
-
-buttonClosePopupProfile.addEventListener('click', () => {
-  editProfilePopup.close();
-});
-
-viewPopupButtonClose.addEventListener('click', () => {
-  viewPopup.close();
-});
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
@@ -100,10 +85,3 @@ buttonAddProfile.addEventListener("click", () => {
   formForEditingCardValidation.resetValidationState();
   addCardPopup.open();
 });
-
-popupImgButtonClose.addEventListener("click", () => {
-  addCardPopup.close();
-});
-
-formForEditingCardValidation.enableValidation();
-

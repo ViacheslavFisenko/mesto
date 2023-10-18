@@ -24,6 +24,7 @@ export class Popup {
         this._popup.addEventListener('click', (event) => {
             if (
                 event.target.classList.contains('popup__close') ||
+                event.target.classList.contains('popup__close-img') ||
                 event.target === this._popup
             ) {
                 this.close();
