@@ -10,6 +10,7 @@
 @import url(../blocks/profile/__edit-img/profile__edit-img.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
 @import url(../blocks/profile/__add/profile__add.css);
+@import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);
 @import url(../blocks/profile/__add-img/profile__add-img.css);
 @import url(../blocks/places/places.css);
 @import url(../blocks/place/__description/place__description.css);
@@ -43,4 +44,3 @@
 @import url(../blocks/place/__delete-img/place__delete-img.css);
 @import url(../blocks/place/__delete/place__delete.css);
 @import url(../blocks/place/__like-img/_active/place__like-img_active.css);
-

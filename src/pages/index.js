@@ -7,6 +7,28 @@ import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import '../pages/index.css';
+import { Api } from "../components/Api.js";
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-77',
+  headers: {
+    authorization: 'a1141784-64c6-4595-a681-05c051f7ce45',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getInitialData()
+  .then(data => {
+    // Обновить информацию о пользователе на странице
+    const { name, about, avatar } = data;
+    userInfo.setUserInfo({ name, info: about });
+    userInfo.setUserAvatar(avatar);
+  })
+  .catch(error => {
+    // Обработать ошибку
+    console.error('There was a problem with the fetch operation:', error);
+  });
+
 
 const buttonEditProfile = document.querySelector(".profile__edit");
 const buttonAddProfile = document.querySelector(".profile__add");
@@ -18,10 +40,20 @@ const editPopupForm = document.querySelector(".popup__content_type_edit");
 const editProfilePopup = new PopupWithForm('.popup_type_show-edit', (formData) => {
   const name = formData.name;
   const description = formData.description;
-  userInfo.setUserInfo({ name, info: description }); 
-  editProfilePopup.close();
+  // Отправка данных на сервер
+  api.updateProfileInfo(name, description)
+    .then((data) => {
+      // Обработать ответ от сервера (если нужно)
+      userInfo.setUserInfo({ name: data.name, about: data.about });
+      editProfilePopup.close();
+    })
+    .catch((error) => {
+      // Обработать ошибку
+      console.error('Error updating profile:', error);
+    });
 });
 editProfilePopup.setEventListeners();
+
 
 const addCardPopup = new PopupWithForm('.popup_type_show-image', (formData) => {
   const place = formData.place;
