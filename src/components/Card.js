@@ -6,6 +6,7 @@ export class Card {
     this._handleCardClick = handleCardClick;
 
     this._element = this._getTemplate();
+    
 
     // Вызываем _setEventListeners() для установки обработчиков
     this._setEventListeners();
@@ -41,10 +42,21 @@ export class Card {
   }
 
   createCard() {
-    this._element.querySelector(".place__title").textContent = this._name;
+    if (!this._element || !this._imageElement || !this._likeButton || !this._deleteButton) {
+      return null;
+    }
+  
+    const titleElement = this._element.querySelector(".place__title");
+    if (!titleElement) {
+      return null;
+    }
+  
+    // Если все элементы присутствуют, настраиваем их
+    titleElement.textContent = this._name;
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
-
+  
     return this._element;
   }
+  
 }

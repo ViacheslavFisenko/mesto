@@ -9,7 +9,7 @@ export class UserInfo {
     return {
       name: this._nameElement.textContent,
       about: this._infoElement.textContent,
-      avatar: this._avatarElement.src,
+      avatar: this._avatarElement.textContent,
     };
   }
   
@@ -20,6 +20,6 @@ export class UserInfo {
   }
 
   setUserAvatar(avatar) {
-    this._avatarElement.src = avatar;
+    this._avatarElement.textContent = avatar;
   }
 }

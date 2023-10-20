@@ -1,0 +1,13 @@
+.profile__button-edit-avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Растягиваем кнопку на всю ширину родительского элемента */
+    height: 100%; /* Растягиваем кнопку на всю высоту родительского элемента */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
