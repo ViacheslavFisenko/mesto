@@ -22,17 +22,20 @@ export class Api {
             .then(this._checkResponse);
     }
 
-    //   addCard(name,link) {
-    //     return fetch(`${this._url}/cards`, {
-    //       method: 'POST',
-    //       headers: this._headers,
-    //       body: JSON.stringify({
-    //         name: name,
-    //         link: link
-    //       })
-    //     })
-    //       .then(this._checkResponse);
-    //   }
+    addCard(name, link) {
+        return fetch(`${this._url}/cards`, {
+            method: 'POST',
+            headers: {
+                authorization: this._headers.authorization,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                link: link
+            })
+        })
+            .then(this._checkResponse);
+    }
 
     getInitialData() {
         return fetch(`${this._url}/users/me`, {
@@ -61,7 +64,7 @@ export class Api {
     }
 
     updateAvatar(avatar) {
-        return fetch(`${this._url}/users/me`, {
+        return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
                 authorization: this._headers.authorization,

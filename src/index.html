@@ -14,7 +14,7 @@
   <main class="main">
     <section class="profile">
       <div class="profile__avatar">
-        <img class="profile__image" src="<%=require('./images/image.jpg')%>" alt="аватар">
+        <img class="profile__image" src="" alt="аватар">
         <button type="button" class="profile__button-edit-avatar">
           <img class="profile__edit-avatar" src="<%=require('./images/Vector 2.svg')%>" alt="Редактировать">
         </button>
@@ -66,7 +66,7 @@
       <h2 class="popup__title">Обновить аватар</h2>
       <form class="popup__content popup__content_type_update-avatar-form" name="popupFormm" novalidate>
         <span id="eror-place" class="popup__eror-message"></span>
-        <input id="src" class="popup__input popup__input_add_src-avatar" required type="url" name="src"
+        <input id="src" class="popup__input popup__input_add_src-avatar" required type="url" name="avatar"
           placeholder="Ссылка">
         <span id="eror-src" class="popup__eror-message"></span>
         <button class="popup__submit-button" type="submit">Сохранить</button>
