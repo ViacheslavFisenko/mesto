@@ -147,7 +147,7 @@ buttonAddProfile.addEventListener("click", () => {
 });
 
 /**Функция создания Popup редактирования аватара */
-const updateAvatarPopup = new PopupWithForm('.popup__type_update-avatar-form', {
+const updateAvatarPopup = new PopupWithForm('.popup__type_avatar', {
   submitCallback: (data) => {
     updateAvatarPopup.renderPreloader(true, 'Загрузка...')
     api.updateAvatar(data)
