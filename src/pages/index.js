@@ -51,7 +51,9 @@ const createCard = (data, user) => {
         .then((res) => {
           card.renderCardLike(res);
         })
-        .catch((err) => alert(err))
+        .catch((err) => {
+          console.log(`Ошибка.....: ${err}`);
+        })
     },
 
     handleCardDeleteLike: (cardId) => {
@@ -59,7 +61,9 @@ const createCard = (data, user) => {
         .then((res) => {
           card.renderCardLike(res)
         })
-        .catch((err) => alert(err))
+        .catch((err) => {
+          console.log(`Ошибка.....: ${err}`);
+        })
     }
 
 
@@ -96,12 +100,14 @@ const userInfo = new UserInfo({
 const editProfilePopup = new PopupWithForm('.popup_type_show-edit', {
   submitCallback: (data) => {
     editProfilePopup.renderPreloader(true, 'Загрузка...')
-    api.setUserInfoApi(data)
+    api.updateProfileInfo(data)
       .then((res) => {
-        userInfo.updateProfileInfo(res);
+        userInfo.setUserInfo(res);
         editProfilePopup.close();
       })
-      .catch((err) => alert(err))
+      .catch((err) => {
+        console.log(`Ошибка.....: ${err}`);
+      })
       .finally(() => {
         editProfilePopup.renderPreloader(false);
       })
@@ -125,7 +131,9 @@ const addCardPopup = new PopupWithForm('.popup_type_show-image', {
         cardsSection.prependItem(createCard(newCard, userCurrentId));
         addCardPopup.close();
       })
-      .catch((err) => alert(err))
+      .catch((err) => {
+        console.log(`Ошибка.....: ${err}`);
+      })
       .finally(() => {
         addCardPopup.renderPreloader(false);
       })
@@ -147,7 +155,9 @@ const updateAvatarPopup = new PopupWithForm('.popup__type_update-avatar-form', {
         userInfo.setUserAvatar(resUser);
         updateAvatarPopup.close();
       })
-      .catch((err) => alert(err))
+      .catch((err) => {
+        console.log(`Ошибка.....: ${err}`);
+      })
       .finally(() => {
         updateAvatarPopup.renderPreloader(false);
       })
@@ -170,7 +180,9 @@ const deleteCardPopup = new PopupWithConfirmDelete('.popup_type_delete-card', {
         card.deleteCard();
         deleteCardPopup.close();
       })
-      .catch((err) => alert(err))
+      .catch((err) => {
+        console.log(`Ошибка.....: ${err}`);
+      })
       .finally(() => {
         deleteCardPopup.renderPreloader(false);
       })
