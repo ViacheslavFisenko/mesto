@@ -9,14 +9,13 @@ export class UserInfo {
     return {
       name: this._nameElement.textContent,
       about: this._infoElement.textContent,
-      avatar: this._avatarElement.src,
+
     };
   }
 
-
-  setUserInfo({ name, about }) {
-    this._nameElement.textContent = name;
-    this._infoElement.textContent = about;
+  setUserInfo(data) {
+    this._nameElement.textContent = data.name;
+    this._infoElement.textContent = data.about;
   }
 
   setUserAvatar(avatar) {

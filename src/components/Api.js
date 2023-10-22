@@ -1,80 +1,106 @@
 export class Api {
-    constructor(options) {
-        this._url = options.url;
-        this._headers = options.headers;
+    constructor(config) {
+      this._url = config.url;
+      this._headers = config.headers;
+      this._authorization = config.headers['authorization'];
     }
-
-    _checkResponse(response) {
-        if (response.ok) {
-            return response.json();
-        }
-        return Promise.reject(`Error: ${response.status}`);
+  
+    /**Проверить на ошибки */
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
     }
-
+    return Promise.reject(`Упс.... Что-то пошло не так! Ошибка: ${res.status}`);
+  };
+  
+    /**Запросить данные с сервера */
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
-            method: 'GET',
-            headers: {
-                authorization: this._headers.authorization,
-                'Content-Type': 'application/json'
-            }
+          headers: {
+            authorization: this._authorization
+          },
         })
-            .then(this._checkResponse);
-    }
+        .then(res => this._checkResponse(res))
+      }
+  
+    /**Функция добавления новой карточки на сервер */
+  addNewCard(data) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      }),
+    })
+    .then(res => this._checkResponse(res))
+  };
+  
+  /**Функция получения данных пользователя с сервера*/
+  getInitialData() {
+    return fetch(`${this._url}/users/me`, {
+      headers: {
+        authorization: this._authorization
+      },
+    })
+    .then(res => this._checkResponse(res))
+  }
+  
+  
+  
+  /**Функция передачи данных пользователя с сервера */
+  updateProfileInfo(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about,
+      }),
+    })
+    .then(res => this._checkResponse(res))
+  }
+  
+  /**Функция передачи на сервер нового аватара */
+  updateAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
+      }),
+    })
+    .then(res => this._checkResponse(res))
+  }
+  
+  /**Функция удаления карточки с сервера */
+  deleteCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(res => this._checkResponse(res))
+  }
+  
+  /**Функция отправки лайка на сервер */
+  putCardLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+    .then(res => this._checkResponse(res))
+  }
+  
+  /**Функция удаления лайка с сервера */
+  deleteCardLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(res => this._checkResponse(res))
+  }
+  
+  }
+  
 
-    addCard(name, link) {
-        return fetch(`${this._url}/cards`, {
-            method: 'POST',
-            headers: {
-                authorization: this._headers.authorization,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name,
-                link: link
-            })
-        })
-            .then(this._checkResponse);
-    }
-
-    getInitialData() {
-        return fetch(`${this._url}/users/me`, {
-            method: 'GET',
-            headers: {
-                authorization: this._headers.authorization,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(this._checkResponse);
-    }
-
-    updateProfileInfo(name, about) {
-        return fetch(`${this._url}/users/me`, {
-            method: 'PATCH',
-            headers: {
-                authorization: this._headers.authorization,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name,
-                about: about,
-            }),
-        })
-            .then(this._checkResponse);
-    }
-
-    updateAvatar(avatar) {
-        return fetch(`${this._url}/users/me/avatar`, {
-            method: 'PATCH',
-            headers: {
-                authorization: this._headers.authorization,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                avatar: avatar,
-            }),
-        })
-            .then(this._checkResponse);
-    }
-    // Другие методы для работы с API могут быть добавлены здесь
-}
+  

@@ -48,13 +48,27 @@
       <button type="button" class="popup__close popup__close_type_edit"> <img class="popup__close-img" alt="х"
           src="<%=require('./images/CloseIcon.svg')%>"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__content popup__content_type_edit" name="popupFormm" novalidate>
-        <input id="username" class="popup__input popup__input_add_firstname" minlength="2" maxlength="40" required
-          type="text" name="name" placeholder="">
-        <span id="eror-username" class="popup__eror-message"></span>
-        <input id="disc" class="popup__input popup__input_add_disc" minlength="2" maxlength="200" required type="text"
-          name="about" placeholder="">
-        <span id="eror-disc" class="popup__eror-message"></span>
+      <form class="popup__content popup__content_type_edit" name="form-profile" novalidate>
+        <input 
+        id="input-name"
+        type="text" 
+        name="name" 
+        class="popup__input popup__input_add_firstname"
+        placeholder="Укажите имя"
+        minlength="2" 
+        maxlength="40" 
+        required>
+        <span id="input-name-error" class="popup__eror-message"></span>
+        <input 
+        id="input-job"
+        type="text"
+        name="about"
+        class="popup__input popup__input_add_disc" 
+        placeholder="Укажите професcию"
+        minlength="2" 
+        maxlength="200" 
+        required>
+        <span id="input-job-error" class="popup__eror-message"></span>
         <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
     </div>
@@ -64,11 +78,17 @@
       <button type="button" class="popup__close popup__close_type_img"> <img class="popup__close-img" alt="х"
           src="<%=require('./images/CloseIcon.svg')%>"></button>
       <h2 class="popup__title">Обновить аватар</h2>
-      <form class="popup__content popup__content_type_update-avatar-form" name="popupFormm" novalidate>
+      <form class="popup__content popup__content_type_update-avatar-form" name="form-avatar" novalidate>
         <span id="eror-place" class="popup__eror-message"></span>
-        <input id="src" class="popup__input popup__input_add_src-avatar" required type="url" name="avatar"
-          placeholder="Ссылка">
-        <span id="eror-src" class="popup__eror-message"></span>
+        <input 
+        id="input-avatar" 
+        class="popup__input popup__input_add_src-avatar" 
+        required 
+        type="url" 
+        name="avatar"
+        placeholder="Ссылка на аватар"
+        required>
+        <span id="input-avatar-error" class="popup__eror-message"></span>
         <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
     </div>
@@ -78,14 +98,36 @@
       <button type="button" class="popup__close popup__close_type_img"> <img class="popup__close-img" alt="х"
           src="<%=require('./images/CloseIcon.svg')%>"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__content popup__content_type_img" name="popupFormm" novalidate>
-        <input id="place" class="popup__input popup__input_add_place" minlength="2" maxlength="30" required type="text"
-          name="place" placeholder="Название">
-        <span id="eror-place" class="popup__eror-message"></span>
-        <input id="src" class="popup__input popup__input_add_src" required type="url" name="src"
-          placeholder="Ссылка на картинку">
-        <span id="eror-src" class="popup__eror-message"></span>
+      <form class="popup__content popup__content_type_img" name="form-place" novalidate>
+        <input 
+        id="input-title"
+        type="text"
+        name="name" 
+        class="popup__input popup__input_add_place" 
+        placeholder="Название"
+        minlength="2" 
+        maxlength="30" 
+        required>
+        <span id="input-title-error" class="popup__eror-message"></span>
+        <input 
+        id="input-link"
+        type="url" 
+        name="link"
+        class="popup__input popup__input_add_src" 
+        required        
+        placeholder="Ссылка на картинку">
+        <span id="input-link-error" class="popup__eror-message"></span>
         <button class="popup__submit-button" type="submit">Создать</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_type_delete-card">
+    <div class="popup__container">
+      <button type="button" class="popup__close popup__close_type_img"> <img class="popup__close-img" alt="х"
+          src="<%=require('./images/CloseIcon.svg')%>"></button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <form class="popup__content popup__content_delete-card" name="popupFormm" novalidate>
+        <button class="popup__submit-button" type="submit">Да</button>
       </form>
     </div>
   </section>
@@ -94,11 +136,12 @@
       <button type="button" class="place__delete">
         <img class="place__delete-img" alt="удалить" src="<%=require('./images/deleteButton.svg')%>">
       </button>
-      <img class="place__image" src="#" alt="Изображение города">
+      <img class="place__image" alt="#">
       <div class="place__description">
         <h2 class="place__title">Карачаевск</h2>
         <button type="button" class="place__like ">
           <div class="place__like-img"></div>
+          <span class="place__span"></span>
         </button>
       </div>
     </li>
