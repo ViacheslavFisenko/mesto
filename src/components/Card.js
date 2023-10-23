@@ -1,5 +1,5 @@
 export class Card {
-  constructor({data, userId, templateSelector, handleCardClick, handleCardDelete, handleCardLike, handleCardDeleteLike}) {
+  constructor({ data, userId, templateSelector, handleCardClick, handleCardDelete, handleCardLike, handleCardDeleteLike }) {
     this._name = data.name;
     this._link = data.link;
     this._dataLikes = data.likes;
@@ -66,12 +66,9 @@ export class Card {
 
   /**Функция общего отображения лайков и их колличества  */
   renderCardLike(card) {
-      this._dataLikes = card.likes;
-    if(this._dataLikes.length === 0) {
-      this._cardElementLikesCount.textContent = '0';
-    } else {
-      this._cardElementLikesCount.textContent = this._dataLikes.length
-    }
+    this._dataLikes = card.likes;
+    this._cardElementLikesCount.textContent = this._dataLikes.length
+
     if (this.likedCard()) {
       this._cardElementLike.classList.add('place__like-img_active');
     } else {
@@ -84,7 +81,7 @@ export class Card {
     this.cardElement = null;
   };
 
-   /**Слушатели событий */
+  /**Слушатели событий */
   _setEventListeners() {
     this._cardElementLike.addEventListener('click', () => this.togleLike());
     this._cardElementDel.addEventListener('click', () => this._handleCardDelete(this, this.idCard));

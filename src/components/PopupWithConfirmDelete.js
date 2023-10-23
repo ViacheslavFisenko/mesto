@@ -28,7 +28,8 @@ export class PopupWithConfirmDelete extends Popup {
   /**Слушатель */
   setEventListeners() {
     super.setEventListeners();
-    this._buttonSubmit.addEventListener('click', () => {
+    this._buttonSubmit.addEventListener('click', (event) => {
+      event.preventDefault()
       this._submitCallback(this.id, this.card);
     })
   }
